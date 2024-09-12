@@ -1,0 +1,19 @@
+import sqlite3
+
+def lister_tables():
+    conn = sqlite3.connect('database.db')
+    cur = conn.cursor()
+    
+    # Exécuter une requête pour lister les tables
+    cur.execute("SELECT name FROM sqlite_master WHERE type='table';")
+    tables = cur.fetchall()
+    
+    # Afficher les tables
+    for table in tables:
+        print(table[0])
+    
+    # Fermer la connexion
+    conn.close()
+
+# Exemple d'utilisation
+print(lister_tables())
